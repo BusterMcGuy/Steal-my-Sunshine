@@ -2,6 +2,23 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
+
+class circle
+{
+
+public:
+
+
+
+};
+
+
+
+
+
+
+
+
 int main(void)
 {
 
@@ -12,45 +29,63 @@ int main(void)
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Sunshine");
     SetTargetFPS(60);
 
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        DrawText("Hello World!", 16, 9, 20, RED);
-        //int centreX = 100;
-        //int centreY = 100;
-        //float radius = 30;
+    // This is how ive added music
 
-        Vector2 GetMousePosition(void);
+        InitAudioDevice();
+        Music music = LoadMusicStream("../game/assets/audio/Garbo.mp3");
+        music.looping = true;
+        PlayMusicStream(music);
+        float volume = 1.0f;
+        bool pause = false;
 
 
-        Vector2 ballPosition2 = { -100.0f, -100.0f };
+        Vector2 ballposition1 = { 500.0f, 500.0f };
 
-        Vector2 ballposition1 = { 100.0f, 100.0f };
+        Vector2 ballPosition2 = { 100.0f, 100.0f };
+
+        bool collison = false;
 
         Color ballColor1 = DARKBROWN;
 
         Color ballColor2 = DARKGREEN;
 
-        ballPosition2 = GetMousePosition();
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        DrawText("I LOVE MAC DEMARCO", 16, 9, 20, RED);
+
+        UpdateMusicStream(music);
+
+        /////////////////////////////////////////////////////////////
 
         DrawCircleV(ballPosition2, 50, ballColor2);
 
         DrawCircleV(ballposition1, 50, ballColor1);
 
-        DrawCircle(screenWidth / 5, 120, 35, DARKBLUE);
-
-        bool IsKeyPressed(int s);
-
-        bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
-      
-        CheckCollisionCircles(ballposition1, 50, ballPosition2, 50);
-        if(CheckCollisionCircles = true)
+        ballPosition2 = GetMousePosition();
        
+        //bool IsKeyPressed(int s);
 
+        collison = CheckCollisionCircles(ballposition1, 50, ballPosition2, 50);
+      
+       if (collison)
+       {
+           ballColor2 = ORANGE;
+
+           ballColor1 = ORANGE;
+       }
+       else
+       {
+           ballColor1 = DARKBROWN;
+
+           ballColor2 = DARKGREEN;
+       }
+        
         EndDrawing();
     }
-
+    UnloadMusicStream(music);
+    CloseAudioDevice();
     CloseWindow();
     return 0;
 }

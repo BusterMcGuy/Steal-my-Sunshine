@@ -3,18 +3,6 @@
 #define SCREEN_HEIGHT 720
 
 
-class circle
-{
-
-public:
-
-
-
-};
-
-
-
-
 
 
 
@@ -30,6 +18,11 @@ int main(void)
     SetTargetFPS(60);
 
     // This is how ive added music
+
+    Texture2D backGround = LoadTexture("../game/assets/textures/Zen.jpg");
+    backGround.width = 1000;
+    backGround.height = 1000;
+    float scrollingBack = 0.0f;
 
         InitAudioDevice();
         Music music = LoadMusicStream("../game/assets/audio/Garbo.mp3");
@@ -55,6 +48,21 @@ int main(void)
         ClearBackground(RAYWHITE);
         DrawText("I LOVE MAC DEMARCO", 16, 9, 20, RED);
 
+        ClearBackground(RED);
+
+
+        void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
+
+        DrawTexture(backGround, 0, 100, WHITE);
+
+
+
+
+       // if (scrollingBack <= -backGround.width * 2) scrollingBack = 0;
+       
+      // DrawTextureEx(backGround, (Vector2 { scrollingBack, 20 }), 0.0f, 2.0f, WHITE);
+       // DrawTextureEx(backGround, (Vector2 { backGround.width * 2 + scrollingBack, 20 }), 0.0f, 2.0f, WHITE);
+       // ImageDraw("../game/assets/textures/Zen.jpg");
         UpdateMusicStream(music);
 
         /////////////////////////////////////////////////////////////

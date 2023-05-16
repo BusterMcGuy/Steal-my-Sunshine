@@ -85,13 +85,12 @@ int main(void)
 
         ClearBackground(RAYWHITE);
 
-        DrawText("I LOVE MAC DEMARCO", 16, 9, 20, RED);
 
-        ClearBackground(RED);
+       // ClearBackground(RED);
 
         void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
 
-        DrawTexture(backestGround, 0, 100, WHITE);
+        //DrawTexture(backestGround, 0, 100, WHITE);
 
         // Background updating and etc...
 
@@ -131,6 +130,7 @@ int main(void)
 
 
 
+        DrawText("I LOVE MAC DEMARCO", 100, 30, 20, RED);
 
 
         //Update music
